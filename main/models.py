@@ -44,6 +44,7 @@ class Thread(models.Model):
    title = models.CharField(max_length=255, blank=False)
    context = models.TextField()
    related_image = models.ImageField(upload_to="media/" , blank=True, null=True)
+   thread_link = models.CharField(max_length=255,blank=True)
    code = models.TextField(blank=True, null=True)
    tail_text = models.TextField(blank=True, null=True)
 
