@@ -23,7 +23,7 @@ class Blog(models.Model):
    title = models.CharField(max_length=255)
    context = models.TextField()
    conclusion = models.TextField()
-   category = models.ManyToManyField(Category , related_name="blogs")
+   category = models.ForeignKey(Category , on_delete=models.CASCADE , related_name="blogs")
    seo_description = models.TextField()
    seo_keywords = models.TextField()
    slug = models.SlugField(max_length=255, unique=True, blank=True)
