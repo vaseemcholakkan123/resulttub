@@ -23,10 +23,12 @@ class Blog(models.Model):
    title = models.CharField(max_length=255)
    context = models.TextField()
    conclusion = models.TextField()
-   category = models.OneToOneField(Category , on_delete=models.CASCADE)
+   category = models.ManyToManyField(Category , related_name="blogs")
    seo_description = models.TextField()
    seo_keywords = models.TextField()
    slug = models.SlugField(max_length=255, unique=True, blank=True)
+   views = models.PositiveBigIntegerField(default=0)
+   created = models.DateTimeField(auto_now_add=True)
 
 
    def save(self, *args, **kwargs):
@@ -50,6 +52,6 @@ class Thread(models.Model):
 
 
    def __str__(self):
-        return self.title + " " + self.blog.title[:10] + "..."
+        return self.title + " : " + self.blog.title[:30] + "..."
 
 

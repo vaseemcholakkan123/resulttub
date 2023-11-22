@@ -1,13 +1,17 @@
+from typing import Any
+from django.http.response import HttpResponse as HttpResponse
 from django.views.generic import TemplateView , DetailView
 from .models import Blog, Category
-from django.http import Http404
+from django.http import Http404, HttpRequest
+from django.db.models import Sum
+
 
 
 class IndexView(TemplateView):
-   extra_context = {"blogs" : Blog.objects.all()[:5]}
+   extra_context = {"blogs" : Blog.objects.all()[:5] , "categories" : Category.objects.annotate(total_views=Sum('blogs__views'))}
    template_name = 'index.html'
 
-    
+  
 class BlogView(DetailView):
     model = Blog
     template_name = 'content.html'

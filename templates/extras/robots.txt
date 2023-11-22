@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://{{settings.DOMAIN_URL}}/sitemap.xml
