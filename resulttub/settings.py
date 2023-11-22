@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-t*c1vd5h2ny5@gm4ieeao!$lsr^n-4flzc-z-89o@(g26+$v+m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["resulttub.in"]
 
 
 # Application definition
