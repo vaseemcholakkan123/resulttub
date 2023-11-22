@@ -1,4 +1,4 @@
-{% load static %} {% block head %}
+{% load static %}
 
 <!DOCTYPE html>
 <head>
@@ -90,9 +90,20 @@
       --ghost-accent-color: #215dee;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YHHF5XEGDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YHHF5XEGDW');
+</script>
+
+
 </head>
 
-{% endblock head %} {% block content %}
 
 <body>
   <svg
@@ -424,4 +435,3 @@
   <script src="{% static 'js/app.bundle.min.js' %}"></script>
 </body>
 
-{% endblock content %}
