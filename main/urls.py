@@ -7,6 +7,7 @@ app_name = 'main'
 
 urlpatterns = [
    path("" , IndexView.as_view(), name="home"),
+   path("about/" , AboutView.as_view(), name="about"),
    path('<slug:category_slug>/<slug:blog_slug>/', BlogView.as_view(), name='show_blog'),
 ]
 

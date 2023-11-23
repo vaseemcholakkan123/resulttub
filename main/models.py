@@ -27,7 +27,7 @@ class Blog(models.Model):
    seo_description = models.TextField()
    seo_keywords = models.TextField()
    slug = models.SlugField(max_length=255, unique=True, blank=True)
-   views = models.PositiveBigIntegerField(default=0)
+   views = models.PositiveBigIntegerField(default=121)
    created = models.DateTimeField(auto_now_add=True)
 
 
@@ -38,6 +38,10 @@ class Blog(models.Model):
 
    def __str__(self):
         return self.title
+
+   @staticmethod
+   def get_top_viewed_blogs():
+      return Blog.objects.order_by('-views')[:10]
 
 
 

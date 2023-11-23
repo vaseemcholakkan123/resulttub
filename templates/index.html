@@ -11,20 +11,20 @@
     type="image/svg+xml"
     href="{% static 'icons/favicon.png' %}"
   />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
+  <meta name="description" content="Result Tub – Your Gateway to Tech Excellence! Explore the latest in technology, programming insights, and digital innovation. Join a community of tech enthusiasts, where curiosity meets coding, and every click unveils a world of technological wonders." />
+  <meta name="keywords" content="technology news,programming insights,coding tutorials,scripting,software development ,trends,digital innovation,tech community,it solutions,Result Tub ,technology hub,programming excellence,developer resources" />
   <meta name="author" content="resulttub" />
   <meta name="robots" content="index, follow" />
-  <meta name="og:title" property="og:title" content="" />
-  <meta name="og:description" property="og:description" content="" />
+  <meta name="og:title" property="og:title" content="Result Tub" />
+  <meta name="og:description" property="og:description" content="Result Tub – Your Gateway to Tech Excellence! Explore the latest in technology, programming insights, and digital innovation. Join a community of tech enthusiasts, where curiosity meets coding, and every click unveils a world of technological wonders." />
   <!-- <meta name="og:image" property="og:image" content="https://example.com/tech-news-thumbnail.jpg"> -->
   <!-- <meta name="og:url" property="og:url" content="https://example.com/tech-news"> -->
   <meta name="og:type" property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="" />
-  <meta name="twitter:description" content="" />
+  <meta name="twitter:title" content="Result Tub" />
+  <meta name="twitter:description" content="Result Tub – Your Gateway to Tech Excellence! Explore the latest in technology, programming insights, and digital innovation. Join a community of tech enthusiasts, where curiosity meets coding, and every click unveils a world of technological wonders." />
   <!-- <meta name="twitter:image" content="https://example.com/tech-news-thumbnail.jpg"> -->
-  <link rel="canonical" href="https://example.com/tech-news" />
+  <link rel="canonical" href="https://resulttub.in/" />
 
   <!-- copied -->
   <link
@@ -220,9 +220,9 @@ data-card-hover-effect="interactive">
                 />
               </div>
               <div class="total-member-card flex align-center">
-                <div class="total-member">70+</div>
+                <div class="total-member">{{ total_read }}+</div>
                 <div class="member-subtext">
-                  Readers who joined the community
+                  Readers who have engaged with our content.
                 </div>
               </div>
             </div>
@@ -239,40 +239,55 @@ data-card-hover-effect="interactive">
             <div class="col-lg-7 post-large-wrap">
               <article class="post-card js-card flex post-card-large">
                 <a
-                  href="/never-let-your-memories-be-greater-than-your-dreams/"
+                  href="{% url 'main:show_blog' category_slug=blogs.first.category.slug blog_slug=blogs.first.slug %}"
                   class="post-img-wrap"
                 >
+                <!-- srcset="
+                  https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
+                  https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
+                  https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  600w,
+                  https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 1000w
+                " -->
+                 
+                {% if blogs.first.threads.first.related_image %}
+
                   <img
-                    loading="lazy"
-                    srcset="
-                      https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
-                      https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
-                      https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  600w,
-                      https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 1000w
-                    "
-                    sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
-                    src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000"
-                    alt="Never let your memories be greater than your dreams"
-                  />
+                  loading="lazy"
+                  sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
+                  src="{{ blogs.first.threads.first.related_image.url }}"
+                  alt="{{ blogs.first.title }}"
+                />
+
+                
+                {% else %}
+
+                {% if blogs.first.threads.first.code %}
+
+                <img
+                src="{% static 'icons/code.jpg' %}"
+                alt="Self-observation is the first step of inner unfolding"
+                loading="lazy"
+              />
+
+                {% endif %}
+
+                {% endif %}
+
                 </a>
                 <div class="post-info-wrap">
                   <div class="tag-list flex">
-                    <a href="/tag/travel/" style="--tag-color: #e10689"
-                      >Travel</a
+                    <a href="#" style="--tag-color: #e10689"
+                      >{{ blogs.first.category.title }}</a
                     >
                   </div>
                   <h2 class="h4 post-title">
                     <a
-                      href="/never-let-your-memories-be-greater-than-your-dreams/"
-                      >Never let your memories be greater than your dreams</a
+                      href="{% url 'main:show_blog' category_slug=blogs.first.category.slug blog_slug=blogs.first.slug %}"
+                      >{{ blogs.first.title }}</a
                     >
                   </h2>
                   <div class="post-excerpt">
-                    Before long the searchlight discovered some distance away a
-                    schooner with all sails set, apparently the same vessel
-                    which had been noticed earlier in the evening. The wind had
-                    by this time backed to the east, and there was a shudder
-                    amongst the watchers on
+                    {{ blogs.first.context }}
                   </div>
                   <!-- <div class="post-meta text-s flex">
                   <div class="author-avatars flex" data-authors="2">
@@ -290,45 +305,66 @@ data-card-hover-effect="interactive">
                 </div>
               </article>
             </div>
-            <div class="col-lg-5">
-              <div class="small-posts-wrap">
-                <article class="post-card js-card flex post-card-small">
-                  <a
-                    href="/self-observation-is-the-first-step-of-inner-unfolding/"
-                    class="post-img-wrap"
-                  >
-                    <img
-                      loading="lazy"
-                      srcset="
+
+            <div class="col-lg-5 gap-2">
+            {% for blog in blogs  %}
+              {% if forloop.counter > 1 and forloop.counter < 5 %}
+                  <div class="small-posts-wrap" style="margin-bottom: 1.5rem;">
+                    <article class="post-card js-card flex post-card-small">
+                      <a
+                        href="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
+                        class="post-img-wrap"
+                      >
+                      {% if blog.threads.first.related_image %}
+                      <!-- srcset="
                         https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
                         https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
                         https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  600w,
                         https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 1000w
-                      "
-                      sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
-                      src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000"
-                      alt="Self-observation is the first step of inner unfolding"
-                    />
-                  </a>
-                  <div class="post-info-wrap">
-                    <div class="tag-list flex">
-                      <a href="/tag/lifestyle/" style="--tag-color: #4d61ff"
-                        >Lifestyle</a
-                      >
-                    </div>
-                    <h2 class="h4 post-title">
-                      <a
-                        href="/self-observation-is-the-first-step-of-inner-unfolding/"
-                        >Self-observation is the first step of inner
-                        unfolding</a
-                      >
-                    </h2>
-                  </div>
-                </article>
+                      " -->
+                        <img
+                          loading="lazy"
+                          sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
+                          src="{{ blog.threads.first.related_image.url }}"
+                          alt="Self-observation is the first step of inner unfolding"
+                        />
 
-                <!-- only four needed -->
-              </div>
+                        
+                      {% else %}
+
+                      {% if blog.threads.first.code %}
+
+                      <img
+                      src="{% static 'icons/code.jpg' %}"
+                      alt="Self-observation is the first step of inner unfolding"
+                      loading="lazy"
+                    />
+
+                      {% endif %}
+
+                        {% endif %}
+                      </a>
+                      <div class="post-info-wrap">
+                        <div class="tag-list flex">
+                          <a href="#" style="--tag-color: #4d61ff"
+                            >{{ blog.category.title }}</a
+                          >
+                        </div>
+                        <h2 class="h4 post-title">
+                          <a
+                            href="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
+                            >{{ blog.title }}</a
+                          >
+                        </h2>
+                      </div>
+                    </article>
+    
+                    <!-- only four needed -->
+                  </div>
+                  {% endif %}
+                  {% endfor %}
             </div>
+
           </div>
         </div>
       </div>
@@ -339,23 +375,23 @@ data-card-hover-effect="interactive">
           <div class="popular-tags-wrap flex">
             {% for category in categories %}
 
-            <div class="tag-item flex">
+            <div class="tag-item flex" style="min-height: 70px;">
               <div
                 class="tag-info"
                 style="margin-left: auto; margin-right: auto"
               >
-                <a href="/tag/inspiration/" class="tag-name"
+                <a href="#" class="tag-name"
                   >{{ category.title }}</a
                 >
                 {% if category.total_views %}
-                <div class="post-count">{{ category.total_views }} posts</div>
+                <div class="post-count">{{ category.total_views }} views</div>
                 {% endif %}
               </div>
             </div>
 
             {% endfor %}
 
-            <div class="all-tags flex">
+            <!-- <div class="all-tags flex">
               <a
                 href="https://porto.gbjsolution.com/tags/"
                 class="all-tags-link"
@@ -365,71 +401,82 @@ data-card-hover-effect="interactive">
                     d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
                   ></path></svg
               ></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
 
+
+
       <div class="post-loop">
         <div class="container">
-          <div class="post-cards-wrap three-column-vertical">
-            <article class="post-card js-card flex ar-4:3">
-              <a
-                href="/autumn-is-a-second-spring-when-every-leaf-is-a-flower/"
-                class="post-img-wrap"
-              >
-                <img
+          <div class="post-cards-wrap three-column-vertical" style="padding-bottom: 1rem;">
+          
+          {% for blog in blogs %}
+            {% if forloop.counter > 5 %}
+              <article class="post-card js-card flex ar-4:3">
+                <a
+                  href="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
+                  class="post-img-wrap"
+                >
+                {% if blog.threads.first.related_image %}
+                <!-- srcset="
+                  https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
+                  https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
+                  https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  600w,
+                  https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 1000w
+                " -->
+                  <img
+                    loading="lazy"
+                    sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
+                    src="{{ blog.threads.first.related_image.url }}"
+                    alt="{{ blog.title }}"
+                  />
+                  
+                  {% else %}
+
+                  {% if blog.threads.first.code %}
+
+                  <img
+                  src="{% static 'icons/code.jpg' %}"
+                  alt="Self-observation is the first step of inner unfolding"
                   loading="lazy"
-                  srcset="
-                    https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
-                    https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
-                    https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  600w,
-                    https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 1000w
-                  "
-                  sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
-                  src="https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000"
-                  alt="Autumn is a second spring when every leaf is a flower"
                 />
-              </a>
-              <div class="post-info-wrap">
-                <div class="tag-list flex">
-                  <a href="/tag/nature/" style="--tag-color: #4d61ff">Nature</a>
+
+                  {% endif %}
+
+                {% endif %}
+                </a>
+                <div class="post-info-wrap">
+                  <div class="tag-list flex">
+                    <a href="#" style="--tag-color: #4d61ff">{{ blog.category }}</a>
+                  </div>
+                  <h2 class="h4 post-title">
+                    <a
+                      href="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
+                      >{{ blog.title }}</a
+                    >
+                  </h2>
+                  <div class="post-excerpt">
+                    {{ blog.context }}
+                  </div>
+                  <!-- <div class="post-meta text-s flex">
+                  <div class="author-avatars flex" data-authors="1">
+                    <a href="/author/harini/" class="author-image-wrap">
+                      <img src="images/harini.jpg" alt="Harini Banerjee" />
+                    </a>
+                  </div>
+                  <span class="read-time">
+                    <svg><use xlink:href="#i-clock"></use></svg>4 min read
+                  </span>
+                </div> -->
                 </div>
-                <h2 class="h4 post-title">
-                  <a
-                    href="/autumn-is-a-second-spring-when-every-leaf-is-a-flower/"
-                    >Autumn is a second spring when every leaf is a flower</a
-                  >
-                </h2>
-                <div class="post-excerpt">
-                  She then expatiated very warmly upon the advantages I should
-                  reap from her plan; talked in a high style of my future
-                  grandeur; assured me how heartily I should despise almost
-                  every body and every thing I had hitherto seen; predicted my
-                  marrying into some family of the
-                </div>
-                <!-- <div class="post-meta text-s flex">
-                <div class="author-avatars flex" data-authors="1">
-                  <a href="/author/harini/" class="author-image-wrap">
-                    <img src="images/harini.jpg" alt="Harini Banerjee" />
-                  </a>
-                </div>
-                <span class="read-time">
-                  <svg><use xlink:href="#i-clock"></use></svg>4 min read
-                </span>
-              </div> -->
-              </div>
-            </article>
+              </article>
+            
+            {% endif %}
+            {% endfor %}
           </div>
-          <div class="pagination-wrap text-center" id="pagination-wrap">
-            <button
-              class="btn btn-lg post-load-button"
-              style="margin-bottom: 3rem"
-              id="load-more"
-            >
-              <span>Load more</span>
-            </button>
-          </div>
+
         </div>
       </div>
     </main>

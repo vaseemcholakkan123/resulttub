@@ -5,22 +5,20 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Title</title>
-   <link rel="icon" type="image/svg+xml" href="{% static 'icons/favicon.svg' %}">
-   <meta name="description" content="">
-   <meta name="keywords" content="">
+   <title>{{ blog.title }}</title>
+   <link rel="icon" type="image/svg+xml" href="{% static 'icons/favicon.png' %}">
+   <meta name="description" content="{{ blog.seo_description }}">
+   <meta name="keywords" content="{{ blog.seo_keywords }}">
    <meta name="author" content="resulttub">
    <meta name="robots" content="index, follow">
-   <meta name="og:title" property="og:title" content="">
-   <meta name="og:description" property="og:description" content="">
-   <!-- <meta name="og:image" property="og:image" content="https://example.com/tech-news-thumbnail.jpg"> -->
-   <!-- <meta name="og:url" property="og:url" content="https://example.com/tech-news"> -->
+   <meta name="og:title" property="og:title" content="{{ blog.title }}">
+   <meta name="og:description" property="og:description" content="{{ blog.seo_description }}">
+   <meta name="og:url" property="og:url" content="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}">
    <meta name="og:type" property="og:type" content="website">
    <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="">
-   <meta name="twitter:description" content="">
-   <!-- <meta name="twitter:image" content="https://example.com/tech-news-thumbnail.jpg"> -->
-   <link rel="canonical" href="https://example.com/tech-news">
+   <meta name="twitter:title" content="{{ blog.title }}">
+   <meta name="twitter:description" content="{{ blog.seo_description }}">
+   <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}">
 
    <!-- copied -->
    <!-- copied -->
@@ -89,6 +87,8 @@
     --ghost-accent-color: #215dee;
   }
 </style>
+
+<link href="{% static 'css/prism.css' %}" rel="stylesheet" />
 </head>
 {% endblock head %}
 
@@ -187,73 +187,81 @@
         <article class="single-post post-vertical narrow">
           <div class="post-header">
             <div class="tag-list flex">
-              <a href="/tag/inspiration/" style="--tag-color: #04baf6"
-                >Inspiration</a
+              <a href="#" style="--tag-color: #04baf6"
+                >{{ blog.category.title }}</a
               >
             </div>
             <h1 class="post-title">
-              It is during our darkest moments that we must focus to see the
-              light
+              {{ blog.title }}
             </h1>
-            <div class="post-excerpt">
-              Mina took a growing interest in everything and I was rejoiced to
-              see that the exigency of affairs was helping her to forget for a
-              time the terrible experience of the night. She was very, very
-              pale
+            <div class="post-excerpt" style="white-space: pre-line;">
+              {{ blog.context }}
             </div>
-            <p>
-              Mina took a growing interest in everything and I was rejoiced
-              to see that the exigency of affairs was helping her to forget
-              for a time the terrible experience of the night. She was very,
-              very pale--almost ghastly, and so thin that her lips were
-              drawn away, showing her teeth in somewhat of prominence.
-            </p>
+  
             <div class="post-meta flex align-center">
 
               <time class="post-date" datetime="2022-04-24">
-                <svg><use xlink:href="#i-calendar"></use></svg>Apr 24, 2022
+                <svg><use xlink:href="#i-calendar"></use></svg>{{ blog.created|date:"M d, Y" }}
               </time>
 
               <time class="post-date" datetime="2022-04-24">
-                  <svg><use xlink:href="#i-calendar"></use></svg>104 views
+                  <svg><use xlink:href="#i-calendar"></use></svg>{{ blog.views }} views
                 </time>
     
             </div>
           </div>
  
           <!-- threads   -->
-          <div class="post-content-area flex">
+          {% for thread in blog.threads.all %}
+            <div class="post-content-area flex">
+              <div class="post-content">
+                <h3 >
+                  {{ forloop.counter }}. {{ thread.title }}
+                  </h3>
+                <p>
+                  {{ thread.context }}
+                </p>
+                <!--members-only-->
+                {% if thread.related_image %}
+                  <figure class="kg-card kg-image-card kg-card-hascaption">
+                    <img
+                      style="width: 100%;"
+                      src="{{ thread.related_image.url }}"
+                      
+                      class="kg-image"
+                      alt=""
+                      loading="lazy"
+                    />
+            
+                  </figure>
+
+                  {% else %}
+
+                  {% if thread.code %}
+                  <pre><code class="language-css">{{ thread.code }}</code></pre>
+                  {% endif %}
+                {% endif %}
+                <p>
+                {{ thread.tail_text }}
+                </p>
+            
+              </div>
+            </div>
+
+          {% endfor %}
+
+
+          <div class="post-header" style="margin-top: 2rem;">
             <div class="post-content">
-              <h3 >
-                  Happiness is not by chance, but by choice
-                </h3>
-              <p>
-                I did not mention this last, lest it should give her needless
-                pain; but it made my blood run cold in my veins to think of
-                what had occurred with poor Lucy when the Count had sucked her
-                blood. As yet there was no sign of the teeth growing sharper;
-                but the time as yet was short, and there was time for fear.
-              </p>
-              <!--members-only-->
-              <figure class="kg-card kg-image-card kg-card-hascaption">
-                <img
-                  src="https://images.unsplash.com/photo-1480072723304-5021e468de85?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=2000&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ"
-                  class="kg-image"
-                  alt=""
-                  loading="lazy"
-                />
-        
-              </figure>
-              <p>
-                When we came to the discussion of the sequence of our efforts
-                and of the disposition of our forces, there were new sources
-                of doubt. It was finally agreed that before starting for
-                Piccadilly we should destroy the Count's lair close at hand.
-              </p>
-         
-              
+                <h3 style="margin-bottom: .3rem !important;">
+                  Conclusion
+                  </h3>
+                <p style="white-space: pre-line; margin-top: 0;">
+                  {{ blog.conclusion }}
+                </p>
             </div>
           </div>
+
         </article>
 
 
@@ -265,7 +273,7 @@
               <div class="share-links flex">
                 <a
                   class="twitter social-icon"
-                  href="https://twitter.com/share?title=It%20is%20during%20our%20darkest%20moments%20that%20we%20must%20focus%20to%20see%20the%20light&amp;url=https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/"
+                  href="https://twitter.com/share?title={{ blog.title }}&amp;url={{ request.scheme }}://{{ request.get_host }}{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                   title="Share on Twitter"
                   target="_blank"
                   ><svg
@@ -279,7 +287,7 @@
 
                 <a
                   class="facebook social-icon"
-                  href="https://www.facebook.com/sharer/sharer.php?u=https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/"
+                  href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                   title="Share on Facebook"
                   target="_blank"
                   ><svg
@@ -297,22 +305,8 @@
                 ></a>
 
                 <a
-                  class="pinterest social-icon"
-                  href="http://pinterest.com/pin/create/button/?url=https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/&amp;media=https://images.unsplash.com/photo-1628174392663-3e7218959b07?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxmYXNoaW9uJTIwJTIwbGlnaHR8ZW58MHx8fHwxNjkyNDQ1MzkzfDA&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000&amp;description=It%20is%20during%20our%20darkest%20moments%20that%20we%20must%20focus%20to%20see%20the%20light"
-                  title="Share on Pinterest"
-                  target="_blank"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M13.3717 2.09442C8.42512 1.41268 3.73383 4.48505 2.38064 9.29256C1.02745 14.1001 3.42711 19.1692 8.00271 21.1689C7.94264 20.4008 7.99735 19.628 8.16502 18.8761C8.34964 18.0374 9.46121 13.4132 9.46121 13.4132C9.23971 12.9173 9.12893 12.379 9.13659 11.8359C9.13659 10.3509 9.99353 9.24295 11.0597 9.24295C11.4472 9.23718 11.8181 9.40028 12.0758 9.68981C12.3335 9.97934 12.4526 10.3667 12.402 10.751C12.402 11.6512 11.8236 13.0131 11.5228 14.2903C11.4014 14.7656 11.5131 15.2703 11.8237 15.65C12.1343 16.0296 12.6069 16.2389 13.0967 16.2139C14.9944 16.2139 16.2675 13.7825 16.2675 10.9126C16.2675 8.71205 14.8098 7.0655 12.1243 7.0655C10.826 7.01531 9.56388 7.4996 8.63223 8.40543C7.70057 9.31126 7.18084 10.5595 7.19423 11.859C7.16563 12.5722 7.39566 13.2717 7.84194 13.8287C8.01361 13.9564 8.07985 14.1825 8.00425 14.3827C7.9581 14.5673 7.84194 15.0059 7.79578 15.1675C7.77632 15.278 7.70559 15.3728 7.60516 15.4228C7.50473 15.4729 7.38651 15.4724 7.28654 15.4214C5.9019 14.8674 5.24957 13.3439 5.24957 11.6051C5.24957 8.75822 7.63424 5.3497 12.4036 5.3497C16.1998 5.3497 18.723 8.1273 18.723 11.0972C18.723 15.0059 16.5468 17.9451 13.3298 17.9451C12.3526 17.9761 11.4273 17.5061 10.8759 16.6986C10.8759 16.6986 10.2974 19.0146 10.1835 19.4531C9.95101 20.2099 9.60779 20.9281 9.16505 21.5844C10.0877 21.8643 11.0471 22.0044 12.0113 22C14.6636 22.0017 17.2078 20.9484 19.0829 19.072C20.958 17.1957 22.0099 14.6504 22.0069 11.9975C22.004 7.00306 18.3183 2.77616 13.3717 2.09442Z"
-                    ></path></svg
-                ></a>
-
-                <a
                   class="whatsapp social-icon"
-                  href="whatsapp://send?text=https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/"
+                  href="whatsapp://send?text={{ request.scheme }}://{{ request.get_host }}{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                   data-action="share/whatsapp/share"
                   title="Share on Whatsapp"
                   target="_blank"
@@ -327,7 +321,7 @@
 
                 <a
                   class="linkedin social-icon"
-                  href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/&amp;title=It%20is%20during%20our%20darkest%20moments%20that%20we%20must%20focus%20to%20see%20the%20light"
+                  href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.scheme }}://{{ request.get_host }}{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                   title="Share on Linkedin"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -338,26 +332,13 @@
                     ></path></svg
                 ></a>
 
-                <a
-                  class="mail social-icon"
-                  href="mailto:?subject=It%20is%20during%20our%20darkest%20moments%20that%20we%20must%20focus%20to%20see%20the%20light&amp;body=https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/"
-                  title="Send via email"
-                  rel="noopener"
-                  target="_blank"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"
-                    ></path></svg
-                ></a>
+                
 
                 <a
                   class="link js-copy-link social-icon"
                   href="javascript:"
                   onclick="return false;"
-                  data-clipboard-text="https://porto.gbjsolution.com/it-is-during-our-darkest-moments-that-we-must-focus-to-see-the-light/"
+                  data-clipboard-text="{{ request.scheme }}://{{ request.get_host }}{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                   title="Copy the permalink"
                   rel="noopener"
                   ><svg
@@ -386,95 +367,164 @@
         </div>
         
         <div class="prev-next-wrap flex justify-space-between">
-          <article class="next-post flex">
-            <div class="post-img-container">
-              <a
-                href="/self-observation-is-the-first-step-of-inner-unfolding/"
-                class="post-img-wrap"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000"
+          
+
+          {% if prev_blog %}
+
+            <article class="prev-post flex">
+              <div class="post-img-container">
+                <a
+                  href="{% url 'main:show_blog' category_slug=prev_blog.category.slug blog_slug=prev_blog.slug %}"
+                  class="post-img-wrap"
+                >
+
+                  {% if prev_blog.threads.first.related_image %}
+                    <img
+                    src="{{ prev_blog.threads.first.related_image.url }}"
+                    alt="{{ prev_blog.title }}"
+                    loading="lazy"
+                    />
+                  
+                    {% else %}
+
+                    {% if prev_blog.threads.first.code %}
+  
+                    <img
+                    src="{% static 'icons/code.jpg' %}"
+                    alt="Self-observation is the first step of inner unfolding"
+                    loading="lazy"
+                  />
+  
+                    {% endif %}
+
+                  {% endif %}
+                </a>
+              </div>
+              <div class="post-info-wrap">
+                <div class="nav-text">Older post</div>
+                <h3 class="post-title h5">
+                  <a
+                    href="{% url 'main:show_blog' category_slug=prev_blog.category.slug blog_slug=prev_blog.slug %}"
+                    >{{ prev_blog.title }}</a
+                  >
+                </h3>
+              </div>
+            </article>
+
+          {% endif %}
+
+
+          {% if next_blog %}
+            <article class="next-post flex">
+              <div class="post-img-container">
+                <a
+                  href="{% url 'main:show_blog' category_slug=next_blog.category.slug blog_slug=next_blog.slug %}"
+                  class="post-img-wrap"
+                >
+                  {% if next_blog.threads.first.related_image %}
+
+                  <img
+                    src="{{ next_blog.threads.first.related_image.url }}"
+                    alt="Self-observation is the first step of inner unfolding"
+                    loading="lazy"
+                  />
+
+                  {% else %}
+
+                  {% if next_blog.threads.first.code %}
+
+                  <img
+                  src="{% static 'icons/code.jpg' %}"
                   alt="Self-observation is the first step of inner unfolding"
                   loading="lazy"
                 />
-              </a>
-            </div>
-            <div class="post-info-wrap">
-              <div class="nav-text">Newer post</div>
-              <h3 class="post-title h5">
-                <a
-                  href="/self-observation-is-the-first-step-of-inner-unfolding/"
-                  >Self-observation is the first step of inner unfolding</a
-                >
-              </h3>
-            </div>
-          </article>
-          <article class="prev-post flex">
-            <div class="post-img-container">
-              <a
-                href="/bangladesh-has-developed-plastic-alternative-using-jute/"
-                class="post-img-wrap"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000"
-                  alt="Bangladesh has developed plastic alternative using jute"
-                  loading="lazy"
-                />
-              </a>
-            </div>
-            <div class="post-info-wrap">
-              <div class="nav-text">Older post</div>
-              <h3 class="post-title h5">
-                <a
-                  href="/bangladesh-has-developed-plastic-alternative-using-jute/"
-                  >Bangladesh has developed plastic alternative using jute</a
-                >
-              </h3>
-            </div>
-          </article>
+
+                  {% endif %}
+
+                  {% endif %}
+                </a>
+              </div>
+              <div class="post-info-wrap">
+                <div class="nav-text">Newer post</div>
+                <h3 class="post-title h5">
+                  <a
+                    href="{% url 'main:show_blog' category_slug=next_blog.category.slug blog_slug=next_blog.slug %}"
+                    >{{ next_blog.title }}</a
+                  >
+                </h3>
+              </div>
+            </article>
+
+          {% endif %}
+
+
+
         </div>
 
         
-        <div class="related-post-wrap">
+        <div class="related-post-wrap" style="margin-bottom: 3rem;">
           <div class="row">
             <div class="col-12">
               <h3 class="section-title h4">You might also like</h3>
             </div>
 
+            {% for top_blog in blog.get_top_viewed_blogs %}
 
-            <div class="col-md-3 col-sm-6 related-post-card-wrap">
-              <article class="related-post-card ar-4:3">
-                <div class="post-img-container">
-                  <a
-                    href="/bangladesh-has-developed-plastic-alternative-using-jute/"
-                    class="post-img-wrap"
-                  >
-                    <img
-                      loading="lazy"
-                      srcset="
-                        https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 300w,
-                        https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 600w
-                      "
-                      sizes="(max-width: 472px) 400px, (max-width: 767px) 600px, (min-width: 768px) 400px, 400px"
-                      src="https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000"
-                      alt="Bangladesh has developed plastic alternative using jute"
-                    />
-                  </a>
-                </div>
-                <div class="post-info-wrap">
-                  <h2 class="post-title h5">
+              {% if top_blog.id != prev_blog.id and top_blog.id != next_blog.id and top_blog.id != blog.id %}
+
+              <div class="col-md-3 col-sm-6 related-post-card-wrap">
+                <article class="related-post-card ar-4:3">
+                  <div class="post-img-container">
                     <a
-                      href="/bangladesh-has-developed-plastic-alternative-using-jute/"
-                      >Bangladesh has developed plastic alternative using
-                      jute</a
+                      href="{% url 'main:show_blog' category_slug=top_blog.category.slug blog_slug=top_blog.slug %}"
+                      class="post-img-wrap"
                     >
-                  </h2>
-                </div>
-              </article>
-            </div>
-           
+                    {% if top_blog.threads.first.related_image %}
+                    <!-- srcset="
+                      https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 300w,
+                      https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 600w
+                    " -->
+                      <img
+                        loading="lazy"
+                        sizes="(max-width: 472px) 400px, (max-width: 767px) 600px, (min-width: 768px) 400px, 400px"
+                        src="{{ top_blog.threads.first.related_image.url }}"
+                        alt="{{ top_blog.title }}"
+                      />
+
+                      
+                  {% else %}
+
+                    {% if top_blog.threads.first.code %}
+
+                    <img
+                    src="{% static 'icons/code.jpg' %}"
+                    alt="Self-observation is the first step of inner unfolding"
+                    loading="lazy"
+                  />
+
+                    {% endif %}
+
+                    {% endif %}
+                    </a>
+                  </div>
+                  <div class="post-info-wrap">
+                    <h2 class="post-title h5">
+                      <a
+                        href="{% url 'main:show_blog' category_slug=top_blog.category.slug blog_slug=top_blog.slug %}"
+                        >{{ top_blog.title }}</a
+                      >
+                    </h2>
+                  </div>
+                </article>
+              </div>
+
+              {% endif %}
+            {% endfor %}
+
           </div>
         </div>
+
+
       </div>
 
   
@@ -482,6 +532,7 @@
     </main>
 
    <script src="{% static 'js/app.bundle.min.js' %}"></script>
+   <script src="{% static 'js/prismcode.js' %}"></script>
 
   </div>
  
