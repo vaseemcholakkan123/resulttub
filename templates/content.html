@@ -216,7 +216,7 @@
             <div class="post-content-area flex">
               <div class="post-content">
                 <h3 >
-                  {{ forloop.counter }}. {{ thread.title }}
+                  {% if not thread.rm_counter %}  {{ forloop.counter }}. {% endif %}   {{ thread.title }}
                   </h3>
                 <p style="white-space: pre-line;">
                   {{ thread.context }}

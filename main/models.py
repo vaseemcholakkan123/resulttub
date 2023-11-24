@@ -53,6 +53,7 @@ class Thread(models.Model):
    thread_link = models.CharField(max_length=255,blank=True)
    code = models.TextField(blank=True, null=True)
    tail_text = models.TextField(blank=True, null=True)
+   rm_counter = models.BooleanField(default=False, null=True)
 
 
    def __str__(self):
