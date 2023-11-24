@@ -9,7 +9,7 @@
   <link
     rel="icon"
     type="image/svg+xml"
-    href="{% static 'icons/favicon.png' %}"
+    href="{{ request.scheme }}://{{ request.get_host }}{% static 'icons/favicon.png' %}"
   />
   <meta name="description" content="Result Tub – Your Gateway to Tech Excellence! Explore the latest in technology, programming insights, and digital innovation. Join a community of tech enthusiasts, where curiosity meets coding, and every click unveils a world of technological wonders." />
   <meta name="keywords" content="technology news,programming insights,coding tutorials,scripting,software development ,trends,digital innovation,tech community,it solutions,Result Tub ,technology hub,programming excellence,developer resources" />
@@ -18,7 +18,7 @@
   <meta name="og:title" property="og:title" content="Result Tub" />
   <meta name="og:description" property="og:description" content="Result Tub – Your Gateway to Tech Excellence! Explore the latest in technology, programming insights, and digital innovation. Join a community of tech enthusiasts, where curiosity meets coding, and every click unveils a world of technological wonders." />
   <!-- <meta name="og:image" property="og:image" content="https://example.com/tech-news-thumbnail.jpg"> -->
-  <!-- <meta name="og:url" property="og:url" content="https://example.com/tech-news"> -->
+  <meta name="og:url" property="og:url" content="https://resulttub.in">
   <meta name="og:type" property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Result Tub" />

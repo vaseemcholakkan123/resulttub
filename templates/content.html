@@ -6,7 +6,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>{{ blog.title }}</title>
-   <link rel="icon" type="image/svg+xml" href="{% static 'icons/favicon.png' %}">
+   <link rel="icon" type="image/svg+xml" href="{{ request.scheme }}://{{ request.get_host }}{% static 'icons/favicon.png' %}">
    <meta name="description" content="{{ blog.seo_description }}">
    <meta name="keywords" content="{{ blog.seo_keywords }}">
    <meta name="author" content="resulttub">
