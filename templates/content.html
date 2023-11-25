@@ -260,9 +260,13 @@
                   <pre><code class="language-css">{{ thread.code }}</code></pre>
                   {% endif %}
                 {% endif %}
-                <p style="white-space: pre-line;">
-                {{ thread.tail_text }}
-                </p>
+                
+                {% if thread.tail_text %}
+
+                  <p style="white-space: pre-line;">
+                    {{ thread.tail_text }}
+                  </p>
+                {% endif %}
             
               </div>
             </div>
