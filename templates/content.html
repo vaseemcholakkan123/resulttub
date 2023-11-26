@@ -36,7 +36,7 @@
 
 
 <script>
-  if(!localStorage.getItem("selected-theme")) localStorage.setItem("dark")
+  if(!localStorage.getItem("selected-theme")) localStorage.setItem("selected-theme","dark")
   if (typeof Storage !== "undefined") {
     let themeMode = document.documentElement.getAttribute("data-theme");
     if (themeMode !== null && themeMode === "system") {
