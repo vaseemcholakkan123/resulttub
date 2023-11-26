@@ -36,6 +36,7 @@
 
 
 <script>
+  if(!localStorage.getItem("selected-theme")) localStorage.setItem("dark")
   if (typeof Storage !== "undefined") {
     let themeMode = document.documentElement.getAttribute("data-theme");
     if (themeMode !== null && themeMode === "system") {
@@ -59,7 +60,7 @@
       if (e.matches) {
         setColorScheme("dark");
       } else {
-        setColorScheme("dark");
+        setColorScheme("light");
       }
     });
   }

@@ -41,6 +41,7 @@
 
   <script>
     if (typeof Storage !== "undefined") {
+      if(!localStorage.getItem("selected-theme")) localStorage.setItem("dark")
       let themeMode = document.documentElement.getAttribute("data-theme");
       if (themeMode !== null && themeMode === "system") {
         setSysPrefColor();
