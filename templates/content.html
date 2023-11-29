@@ -451,7 +451,7 @@
 
 
           {% if next_blog %}
-            <article class="next-post flex">
+            <article class="next-post flex" style="margin-left: auto;">
               <div class="post-img-container">
                 <a
                   href="{% url 'main:show_blog' category_slug=next_blog.category.slug blog_slug=next_blog.slug %}"

@@ -300,19 +300,16 @@ data-card-hover-effect="interactive">
                   <div class="post-excerpt">
                     {{ blogs.first.context }}
                   </div>
-                  <!-- <div class="post-meta text-s flex">
+                  <div class="post-meta text-s flex">
                   <div class="author-avatars flex" data-authors="2">
-                    <a href="/author/apurba/" class="author-image-wrap">
-                      <img src="images/Apurba.jpg" alt="Apurba Talukdar" />
-                    </a>
-                    <a href="/author/ishan/" class="author-image-wrap">
-                      <img src="images/ishan.jpg" alt="Ishan Sharma" />
+                    <a href="{% url "main:about" %}" class="author-image-wrap">
+                      <img src="{% static "icons/prof.jpeg" %}" alt="Result Tub" />
                     </a>
                   </div>
                   <span class="read-time">
-                    <svg><use xlink:href="#i-clock"></use></svg>3 min read
+                    <svg><use xlink:href="#i-fire"></use></svg>{{ blogs.first.views }} Views
                   </span>
-                </div> -->
+                </div>
                 </div>
               </article>
             </div>
