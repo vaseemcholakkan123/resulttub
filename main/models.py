@@ -34,6 +34,7 @@ class Blog(models.Model):
    ALLOW_COMMENTS = (("allow", "allow"), ("disallow", "disallow"))
 
    title = models.CharField(max_length=255)
+   featured_image = models.ImageField(upload_to="media" , blank=True, null=True) 
    author = models.ForeignKey(get_user_model() ,on_delete=models.CASCADE, related_name="author")
    status = models.CharField(max_length=30, choices=VISIBILITY, default="draft")
    allow_comments = models.CharField(

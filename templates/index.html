@@ -260,12 +260,12 @@ data-card-hover-effect="interactive">
                   https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI4fHxmYXNoaW9uJTIwYmVhdXR5fGVufDB8fHx8MTY5MjQ0NTA2MHww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 1000w
                 " -->
                  
-                {% if blogs.first.threads.first.related_image %}
+                {% if blogs.first.featured_image %}
 
                   <img
                   loading="lazy"
                   sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
-                  src="{{ blogs.first.threads.first.related_image.url }}"
+                  src="{{ blogs.first.featured_image.url }}"
                   alt="{{ blogs.first.title }}"
                 />
 
@@ -323,7 +323,7 @@ data-card-hover-effect="interactive">
                         href="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                         class="post-img-wrap"
                       >
-                      {% if blog.threads.first.related_image %}
+                      {% if blog.featured_image %}
                       <!-- srcset="
                         https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
                         https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDIzfHxmYXNoaW9uJTIwJTIwZmxvd2VyJTIwbGlmZXN0eWxlfGVufDB8fHx8MTY5MjQ0NTI1N3ww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
@@ -333,7 +333,7 @@ data-card-hover-effect="interactive">
                         <img
                           loading="lazy"
                           sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
-                          src="{{ blog.threads.first.related_image.url }}"
+                          src="{{ blog.featured_image.url }}"
                           alt="Self-observation is the first step of inner unfolding"
                         />
 
@@ -427,7 +427,7 @@ data-card-hover-effect="interactive">
                   href="{% url 'main:show_blog' category_slug=blog.category.slug blog_slug=blog.slug %}"
                   class="post-img-wrap"
                 >
-                {% if blog.threads.first.related_image %}
+                {% if blog.featured_image %}
                 <!-- srcset="
                   https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  250w,
                   https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=webp&amp;ixid=M3wxMTc3M3wwfDF8c2VhcmNofDI2fHxmYXNoaW9uJTIwJTIwZmxvd2VyfGVufDB8fHx8MTY5MjQ0NTE5Mnww&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000  400w,
@@ -437,7 +437,7 @@ data-card-hover-effect="interactive">
                   <img
                     loading="lazy"
                     sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
-                    src="{{ blog.threads.first.related_image.url }}"
+                    src="{{ blog.featured_image.url }}"
                     alt="{{ blog.title }}"
                   />
                   

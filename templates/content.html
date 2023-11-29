@@ -255,8 +255,8 @@
                 </p>
 
                 {% if thread.thread_link %}
-                  <p>Link : <a href="{{ thread.thread_link }}">{{ thread.link_text }}</a></p>
-                {% endif &}
+                  <p>Link : <a href="{{ thread.thread_link }}" class="thread-link">{{ thread.link_text }}</a></p>
+                {% endif %}
                 <!--members-only-->
                 {% if thread.related_image %}
                   <figure class="kg-card kg-image-card kg-card-hascaption">
@@ -418,9 +418,9 @@
                   class="post-img-wrap"
                 >
 
-                  {% if prev_blog.threads.first.related_image %}
+                  {% if prev_blog.featured_image %}
                     <img
-                    src="{{ prev_blog.threads.first.related_image.url }}"
+                    src="{{ prev_blog.featured_image.url }}"
                     alt="{{ prev_blog.title }}"
                     loading="lazy"
                     />
@@ -461,10 +461,10 @@
                   href="{% url 'main:show_blog' category_slug=next_blog.category.slug blog_slug=next_blog.slug %}"
                   class="post-img-wrap"
                 >
-                  {% if next_blog.threads.first.related_image %}
+                  {% if next_blog.featured_image %}
 
                   <img
-                    src="{{ next_blog.threads.first.related_image.url }}"
+                    src="{{ next_blog.featured_image.url }}"
                     alt="Self-observation is the first step of inner unfolding"
                     loading="lazy"
                   />
@@ -519,7 +519,7 @@
                       href="{% url 'main:show_blog' category_slug=top_blog.category.slug blog_slug=top_blog.slug %}"
                       class="post-img-wrap"
                     >
-                    {% if top_blog.threads.first.related_image %}
+                    {% if top_blog.featured_image %}
                     <!-- srcset="
                       https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 300w,
                       https://images.unsplash.com/photo-1559563458-527698bf5295?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxMTc3M3wwfDF8c2VhcmNofDI5fHxiYWd8ZW58MHx8fHwxNjcxNDMxNDg0&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=2000 600w
@@ -527,7 +527,7 @@
                       <img
                         loading="lazy"
                         sizes="(max-width: 472px) 400px, (max-width: 767px) 600px, (min-width: 768px) 400px, 400px"
-                        src="{{ top_blog.threads.first.related_image.url }}"
+                        src="{{ top_blog.featured_image.url }}"
                         alt="{{ top_blog.title }}"
                       />
 
