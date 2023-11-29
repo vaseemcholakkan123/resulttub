@@ -34,7 +34,7 @@ class Blog(models.Model):
    ALLOW_COMMENTS = (("allow", "allow"), ("disallow", "disallow"))
 
    title = models.CharField(max_length=255)
-   author = models.ForeignKey(get_user_model() ,on_delete=models.CASCADE, related_name="author" , default=1)
+   author = models.ForeignKey(get_user_model() ,on_delete=models.CASCADE, related_name="author" , null=True , blank=True)
    status = models.CharField(max_length=30, choices=VISIBILITY, default="draft")
    allow_comments = models.CharField(
         max_length=30, choices=ALLOW_COMMENTS, default="disallow"
