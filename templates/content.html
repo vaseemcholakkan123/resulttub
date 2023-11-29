@@ -255,7 +255,7 @@
                 </p>
 
                 {% if thread.thread_link %}
-                  <p>Link : <a href="{{ thread.thread_link }}" class="thread-link">{{ thread.link_text }}</a></p>
+                  <p>Link : <a target="_blank" href="{{ thread.thread_link }}" class="thread-link">{{ thread.link_text }}</a></p>
                 {% endif %}
                 <!--members-only-->
                 {% if thread.related_image %}
