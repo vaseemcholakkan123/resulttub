@@ -34,7 +34,7 @@ class Blog(models.Model):
    ALLOW_COMMENTS = (("allow", "allow"), ("disallow", "disallow"))
 
    title = models.CharField(max_length=255)
-   author = models.ManyToManyField(get_user_model() , related_name="author")
+   author = models.ForeignKey(get_user_model() ,on_delete=models.CASCADE, related_name="author")
    status = models.CharField(max_length=30, choices=VISIBILITY, default="draft")
    allow_comments = models.CharField(
         max_length=30, choices=ALLOW_COMMENTS, default="disallow"
