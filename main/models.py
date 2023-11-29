@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth import get_user_model
 
 
 
 class Category(models.Model):
    title = models.CharField(max_length=50)
    slug = models.SlugField(max_length=255, unique=True, blank=True)
+   accent = models.CharField(max_length=20, blank=True, default="#04baf6")
 
 
    def save(self, *args, **kwargs):
@@ -16,11 +18,27 @@ class Category(models.Model):
 
    def __str__(self):
       return self.title
+   
+   class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
 
 
 class Blog(models.Model):
+   class BlogObjects(models.Manager):
+      def get_queryset(self):
+         return super().get_queryset().filter(status="published")
+      
+   VISIBILITY = (("published", "published"), ("draft", "draft"))
+   ALLOW_COMMENTS = (("allow", "allow"), ("disallow", "disallow"))
+
    title = models.CharField(max_length=255)
+   author = models.ForeignKey(get_user_model() ,on_delete=models.CASCADE, related_name="author")
+   status = models.CharField(max_length=30, choices=VISIBILITY, default="draft")
+   allow_comments = models.CharField(
+        max_length=30, choices=ALLOW_COMMENTS, default="disallow"
+    )
    context = models.TextField()
    conclusion = models.TextField()
    category = models.ForeignKey(Category , on_delete=models.CASCADE , related_name="blogs")
@@ -29,6 +47,9 @@ class Blog(models.Model):
    slug = models.SlugField(max_length=255, unique=True, blank=True)
    views = models.PositiveBigIntegerField(default=121)
    created = models.DateTimeField(auto_now_add=True)
+
+   objects = models.Manager()
+   blogObjects = BlogObjects()
 
 
    def save(self, *args, **kwargs):
@@ -41,7 +62,12 @@ class Blog(models.Model):
 
    @staticmethod
    def get_top_viewed_blogs():
-      return Blog.objects.order_by('-views')[:10]
+      return Blog.blogObjects.order_by('-views')[:10]
+   
+   class Meta:
+      ordering = ("-created",)
+      verbose_name = "Blog"
+      verbose_name_plural = "Blogs" 
 
 
 

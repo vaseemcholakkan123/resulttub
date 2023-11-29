@@ -91,6 +91,8 @@
 
 <link href="{% static 'css/prism.css' %}" rel="stylesheet" />
 
+{% if blog.status == "published" %}
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YHHF5XEGDW"></script>
 <script>
@@ -109,6 +111,8 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "jw2mvgrnf4");
 </script>
+
+{% endif %}
 </head>
 {% endblock head %}
 
@@ -207,7 +211,7 @@
         <article class="single-post post-vertical narrow">
           <div class="post-header">
             <div class="tag-list flex">
-              <a href="#" style="--tag-color: #04baf6"
+              <a href="#" style="--tag-color: {{ blog.category.accent }}"
                 >{{ blog.category.title }}</a
               >
             </div>

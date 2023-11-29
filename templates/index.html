@@ -93,6 +93,8 @@
     }
   </style>
 
+{% if not DEBUG %}
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YHHF5XEGDW"></script>
 <script>
@@ -111,6 +113,8 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "jw2mvgrnf4");
 </script>
+
+{% endif %}
 
 </head>
 
@@ -285,7 +289,7 @@ data-card-hover-effect="interactive">
                 </a>
                 <div class="post-info-wrap">
                   <div class="tag-list flex">
-                    <a href="#" style="--tag-color: #e10689"
+                    <a href="#" style="--tag-color: {{ blog.category.accent }}"
                       >{{ blogs.first.category.title }}</a
                     >
                   </div>
@@ -355,7 +359,7 @@ data-card-hover-effect="interactive">
                       </a>
                       <div class="post-info-wrap">
                         <div class="tag-list flex">
-                          <a href="#" style="--tag-color: #4d61ff"
+                          <a href="#" style="--tag-color: {{ blog.category.accent }}"
                             >{{ blog.category.title }}</a
                           >
                         </div>
@@ -458,7 +462,7 @@ data-card-hover-effect="interactive">
                 </a>
                 <div class="post-info-wrap">
                   <div class="tag-list flex">
-                    <a href="#" style="--tag-color: #4d61ff">{{ blog.category }}</a>
+                    <a href="#" style="--tag-color: {{ blog.category.accent }}">{{ blog.category }}</a>
                   </div>
                   <h2 class="h4 post-title">
                     <a
