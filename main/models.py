@@ -77,6 +77,7 @@ class Thread(models.Model):
    context = models.TextField()
    related_image = models.ImageField(upload_to="media" , blank=True, null=True)
    thread_link = models.CharField(max_length=255,blank=True)
+   link_text = models.CharField(max_length=100 , blank=True, null=True)
    code = models.TextField(blank=True, null=True)
    tail_text = models.TextField(blank=True, null=True)
    rm_counter = models.BooleanField(default=False, null=True)

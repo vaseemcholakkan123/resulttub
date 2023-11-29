@@ -253,6 +253,10 @@
                 <p style="white-space: pre-line;">
                   {{ thread.context }}
                 </p>
+
+                {% if thread.thread_link %}
+                  <p>Link : <a href="{{ thread.thread_link }}">{{ thread.link_text }}</a></p>
+                {% endif &}
                 <!--members-only-->
                 {% if thread.related_image %}
                   <figure class="kg-card kg-image-card kg-card-hascaption">
