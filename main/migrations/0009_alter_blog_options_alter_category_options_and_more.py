@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
             model_name="blog",
             name="author",
             field=models.ForeignKey(
-                default="",
+                default="1",
                 on_delete=django.db.models.deletion.CASCADE,
                 related_name="author",
                 to=settings.AUTH_USER_MODEL,
