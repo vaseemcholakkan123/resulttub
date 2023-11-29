@@ -287,7 +287,7 @@ data-card-hover-effect="interactive">
                 </a>
                 <div class="post-info-wrap">
                   <div class="tag-list flex">
-                    <a href="#" style="--tag-color: {{ blog.category.accent }}"
+                    <a href="#" style="--tag-color: {{ blog.first.category.accent }}"
                       >{{ blogs.first.category.title }}</a
                     >
                   </div>
@@ -468,16 +468,16 @@ data-card-hover-effect="interactive">
                   <div class="post-excerpt">
                     {{ blog.context }}
                   </div>
-                  <!-- <div class="post-meta text-s flex">
+                  <div class="post-meta text-s flex">
                   <div class="author-avatars flex" data-authors="1">
-                    <a href="/author/harini/" class="author-image-wrap">
-                      <img src="images/harini.jpg" alt="Harini Banerjee" />
+                    <a href="{% url "main:about" %}" class="author-image-wrap">
+                      <img src="{% static "icons/prof.jpeg" %}" alt="Harini Banerjee" />
                     </a>
                   </div>
                   <span class="read-time">
-                    <svg><use xlink:href="#i-clock"></use></svg>4 min read
+                    <svg><use xlink:href="#i-fire"></use></svg>{{ blog.views }} Views
                   </span>
-                </div> -->
+                </div>
                 </div>
               </article>
             
