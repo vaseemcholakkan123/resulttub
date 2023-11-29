@@ -10,7 +10,7 @@ from django.db.models import Sum
 class IndexView(TemplateView):
    extra_context = {"blogs" : Blog.blogObjects.order_by('-views')[:15] ,
                     "categories" : Category.objects.annotate(total_views=Sum('blogs__views')),
-                    # "total_read" : Blog.blogObjects.aggregate(Sum('views'))['views__sum'] or 0,
+                    "total_read" : Blog.blogObjects.aggregate(Sum('views'))['views__sum'] or 0,
                     }
    template_name = 'index.html'
 
