@@ -58,3 +58,4 @@ class DraftView(DetailView):
     context_object_name = 'blog'
     slug_field = 'slug'
     slug_url_kwarg = 'blog_slug'
+
