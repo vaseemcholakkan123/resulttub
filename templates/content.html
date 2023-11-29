@@ -224,6 +224,14 @@
   
             <div class="post-meta flex align-center">
 
+              <div class="author-avatars flex" data-authors="1">
+                <a href="{% url 'main:about' %}" class="author-image-wrap" title="User Profile">
+                    <img src="{% static 'icons/prof.jpeg' %}" alt="Result Tub">
+                </a>
+              </div>
+              <div class="author-names">
+                <a href="{% url 'main:about' %}">Result Tub</a>
+              </div>
               <time class="post-date" datetime="2022-04-24">
                 <svg><use xlink:href="#i-calendar"></use></svg>{{ blog.created|date:"M d, Y" }}
               </time>
