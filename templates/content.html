@@ -248,8 +248,8 @@
             <div class="post-content-area flex">
               <div class="post-content">
                 <h3 >
-                  {% if not thread.rm_counter %}  {{ forloop.counter }}. {% endif %}   {{ thread.title }}
-                  </h3>
+                  {{ thread.title }}
+                </h3>
                 <p style="white-space: pre-line;">
                   {{ thread.context }}
                 </p>
@@ -258,7 +258,7 @@
                   <p>Link : <a target="_blank" href="{{ thread.thread_link }}" class="thread-link">{{ thread.link_text }}</a></p>
                 {% endif %}
                 <!--members-only-->
-                {% if thread.related_image %}
+                {% if thread.related_image and !thread.code %}
                   <figure class="kg-card kg-image-card kg-card-hascaption">
                     <img
                       style="width: 100%;height: auto;"
@@ -275,6 +275,24 @@
 
                   {% if thread.code %}
                   <pre><code class="language-css">{{ thread.code }}</code></pre>
+                  {% endif %}
+
+                  {% else %}
+
+                  {% if thread.code and thread.related_image %}
+
+                  <figure class="kg-card kg-image-card kg-card-hascaption">
+                    <img
+                      style="width: 100%;height: auto;"
+                      src="{{ thread.related_image.url }}"
+                      
+                      class="kg-image"
+                      alt=""
+                      loading="lazy"
+                    />
+            
+                  </figure>
+
                   {% endif %}
                 {% endif %}
                 

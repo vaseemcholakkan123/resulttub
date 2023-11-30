@@ -81,7 +81,6 @@ class Thread(models.Model):
    link_text = models.CharField(max_length=100 , blank=True, null=True)
    code = models.TextField(blank=True, null=True)
    tail_text = models.TextField(blank=True, null=True)
-   rm_counter = models.BooleanField(default=False, null=True)
 
 
    def __str__(self):
