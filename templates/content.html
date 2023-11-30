@@ -258,7 +258,7 @@
                   <p>Link : <a target="_blank" href="{{ thread.thread_link }}" class="thread-link">{{ thread.link_text }}</a></p>
                 {% endif %}
                 <!--members-only-->
-                {% if thread.related_image and !thread.code %}
+                {% if thread.related_image and not thread.code %}
                   <figure class="kg-card kg-image-card kg-card-hascaption">
                     <img
                       style="width: 100%;height: auto;"
@@ -277,7 +277,6 @@
                   <pre><code class="language-css">{{ thread.code }}</code></pre>
                   {% endif %}
 
-                  {% else %}
 
                   {% if thread.code and thread.related_image %}
 
