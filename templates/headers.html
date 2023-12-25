@@ -268,7 +268,7 @@
                {% for category in categories %}
                <li class="nav-item sub-nav-item" role="menuitem">
                  <a
-                   href=""
+                   href="{% url 'main:show_category' category_slug=category.slug %}"
                    class="nav-link"
                    >{{ category.title }}</a
                  >

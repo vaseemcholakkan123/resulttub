@@ -26,6 +26,7 @@ class BlogView(DetailView):
     context_object_name = 'blog'
     slug_field = 'slug'
     slug_url_kwarg = 'blog_slug'
+    extra_context = {"categories" : Category.objects.annotate(total_views=Sum('blogs__views'))}
 
     def get_object(self, queryset=None):
         category_slug = self.kwargs.get('category_slug')
@@ -59,3 +60,18 @@ class DraftView(DetailView):
     slug_field = 'slug'
     slug_url_kwarg = 'blog_slug'
 
+
+class CategoryView(DetailView):
+    model = Category
+    template_name = "tag-expanded.html"
+    context_object_name = "category"    
+    slug_field = 'slug'
+    slug_url_kwarg = 'category_slug'
+    extra_context = {"categories" : Category.objects.annotate(total_views=Sum('blogs__views'))}
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        blogs = Blog.objects.filter(category=self.object).order_by('-views')
+        context['blogs'] = blogs
+        context['total_blogs'] = blogs.count()
+        return context

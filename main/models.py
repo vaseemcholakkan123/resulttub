@@ -7,7 +7,10 @@ from django.contrib.auth import get_user_model
 class Category(models.Model):
    title = models.CharField(max_length=50)
    slug = models.SlugField(max_length=255, unique=True, blank=True)
+   context = models.CharField(max_length=255,blank=True)
    accent = models.CharField(max_length=20, blank=True, default="#04baf6")
+   banner = models.ImageField(upload_to="category_banners",blank=True)
+   banner_small = models.ImageField(upload_to="category_banners_small",blank=True)
 
 
    def save(self, *args, **kwargs):

@@ -287,7 +287,7 @@ data-card-hover-effect="interactive">
                 </a>
                 <div class="post-info-wrap">
                   <div class="tag-list flex">
-                    <a href="#" style="--tag-color: {{ blogs.first.category.accent }}"
+                    <a href="{% url 'main:show_category' category_slug=blogs.first.category.slug %}" style="--tag-color: {{ blogs.first.category.accent }}"
                       >{{ blogs.first.category.title }}</a
                     >
                   </div>
@@ -354,7 +354,7 @@ data-card-hover-effect="interactive">
                       </a>
                       <div class="post-info-wrap">
                         <div class="tag-list flex">
-                          <a href="#" style="--tag-color: {{ blog.category.accent }}"
+                          <a href="{% url 'main:show_category' category_slug=blog.category.slug %}" style="--tag-color: {{ blog.category.accent }}"
                             >{{ blog.category.title }}</a
                           >
                         </div>
@@ -383,25 +383,28 @@ data-card-hover-effect="interactive">
           <div class="popular-tags-wrap flex">
             {% for category in categories %}
 
-            <div class="tag-item flex" style="min-height: 70px;">
-              <div
-                class="tag-info"
-                style="margin-left: auto; margin-right: auto"
-              >
-                <a href="#" class="tag-name"
-                  >{{ category.title }}</a
-                >
-                {% if category.total_views %}
-                <div class="post-count">{{ category.total_views }} views</div>
+            <div class="tag-item flex">
+                {% if category.banner_small %}
+                <div class="tag-image">
+                  <img src="{{ category.banner_small.url }}" loading="lazy" alt="{{ category.title }}">
+                </div>
                 {% endif %}
-              </div>
+                <div class="tag-info">
+                  <a href="{% url 'main:show_category' category_slug=category.slug %}" class="tag-name"
+                    >{{ category.title }}</a
+                  >
+                  {% if category.total_views %}
+                  <div class="post-count">{{ category.total_views }} views</div>
+                  {% endif %}
+                </div>
             </div>
+
 
             {% endfor %}
 
             <!-- <div class="all-tags flex">
               <a
-                href="https://porto.gbjsolution.com/tags/"
+                href=""
                 class="all-tags-link"
                 ><span>See all tags</span
                 ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -457,7 +460,7 @@ data-card-hover-effect="interactive">
                 </a>
                 <div class="post-info-wrap">
                   <div class="tag-list flex">
-                    <a href="#" style="--tag-color: {{ blog.category.accent }}">{{ blog.category }}</a>
+                    <a href="{% url 'main:show_category' category_slug=blog.category.slug %}" style="--tag-color: {{ blog.category.accent }}">{{ blog.category }}</a>
                   </div>
                   <h2 class="h4 post-title">
                     <a

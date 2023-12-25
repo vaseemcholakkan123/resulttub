@@ -9,7 +9,9 @@ urlpatterns = [
    path("" , IndexView.as_view(), name="home"),
    path("about/" , AboutView.as_view(), name="about"),
    path("draft/<slug:blog_slug>/", DraftView.as_view(), name='show_draft'), # not is sitemap
-   path('<slug:category_slug>/<slug:blog_slug>/', BlogView.as_view(), name='show_blog'),
+   path("category/<slug:category_slug>/", CategoryView.as_view(), name='show_category'),
+   path("<slug:category_slug>/<slug:blog_slug>/", BlogView.as_view(), name='show_blog'),
+
 
 ]
 

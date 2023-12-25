@@ -217,7 +217,7 @@
         <article class="single-post post-vertical narrow">
           <div class="post-header">
             <div class="tag-list flex">
-              <a href="#" style="--tag-color: {{ blog.category.accent }}"
+              <a href="{% url 'main:show_category' category_slug=blog.category.slug %}" style="--tag-color: {{ blog.category.accent }}"
                 >{{ blog.category.title }}</a
               >
             </div>
