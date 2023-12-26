@@ -257,7 +257,7 @@
                   {{ thread.title }}
                 </h3>
                 <p style="white-space: pre-line;">
-                  {{ thread.context }}
+                  {{ thread.context|safe }}
                 </p>
 
                 {% if thread.link_text == "download_btn"  %}
@@ -320,7 +320,7 @@
                 {% if thread.tail_text %}
 
                   <p style="white-space: pre-line;">
-                    {{ thread.tail_text }}
+                    {{ thread.tail_text|safe }}
                   </p>
                 {% endif %}
             
