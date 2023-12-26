@@ -2,22 +2,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ blog.title }}</title>
+  <title>{{ category.title }} Blogs</title>
   <link
     rel="icon"
     type="image/svg+xml"
     href="{{ request.scheme }}://{{ request.get_host }}{% static 'icons/favicon.png' %}"
   />
-  <meta name="title" content="{{ blog.title }}" />
-  <meta name="description" content="{{ blog.seo_description }}" />
-  <meta name="keywords" content="{{ blog.seo_keywords }}" />
+  <meta name="title" content="{{ category.title }}" />
+  <meta name="description" content="{{ category.context }}" />
+  <meta name="keywords" content="{{ category.title }},{{ category.context }}" />
   <meta name="author" content="resulttub" />
   <meta name="robots" content="index, follow" />
-  <meta name="og:title" property="og:title" content="{{ blog.title }}" />
+  <meta name="og:title" property="og:title" content="{{ category.title }}" />
   <meta
     name="og:description"
     property="og:description"
-    content="{{ blog.seo_description }}"
+    content="{{ category.context }}"
   />
   <meta
     name="og:url"
@@ -26,8 +26,8 @@
   />
   <meta name="og:type" property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ blog.title }}" />
-  <meta name="twitter:description" content="{{ blog.seo_description }}" />
+  <meta name="twitter:title" content="{{ category.title }}" />
+  <meta name="twitter:description" content="{{ category.context }}" />
   <link
     rel="canonical"
     href="{{ request.scheme }}://{{ request.get_host }}{% url 'main:show_category' category_slug=category.slug %}"
